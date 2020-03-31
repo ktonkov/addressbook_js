@@ -1,0 +1,29 @@
+{
+  "name": "addressbook_js",
+  "version": "1.0.0",
+  "description": "Addressbook JS Automation",
+  "main": "index.js",
+  "scripts": {
+    "test:groupcreation": "node_modules/.bin/mocha tests/GroupCreationTests.js --timeout 50000",
+    "test:groupmodification": "node_modules/.bin/mocha tests/GroupModificationTests.js --timeout 50000",
+    "test:groupdeletion": "node_modules/.bin/mocha tests/GroupDeletionTests.js --timeout 50000",
+    "test:contactcreation": "node_modules/.bin/mocha tests/ContactCreationTests.js --timeout 50000",
+    "test:contactmodification": "node_modules/.bin/mocha tests/ContactModificationTests.js --timeout 50000",
+    "test:contactdeletion": "node_modules/.bin/mocha tests/ContactDeletionTests.js --timeout 50000",
+    "test:lodashtest": "node_modules/.bin/mocha tests/lodashTests.js --timeout 50000"
+  },
+  "author": "ktonkov",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "lodash": "^4.17.15",
+    "mocha": "^7.1.1",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.9.0"
+  },
+  "plugins": [
+    "@babel/plugin-transform-modules-commonjs"
+  ]
+}
