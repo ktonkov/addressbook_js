@@ -112,4 +112,6 @@ exports.getGroupCount = async function (driver) {
     return await getGroups(driver).size();
 }
 
+exports.getGroups = this.getGroups;
+
 exports.createGroup = this.createGroup;

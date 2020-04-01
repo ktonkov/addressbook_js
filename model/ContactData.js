@@ -4,11 +4,13 @@ class ContactData {
         lastName,
         homePhone,
         email,
+        group
     }) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.homePhone = homePhone;
         this.email = email;
+        this.group = group;
     }
 
     getId() {
@@ -33,6 +35,10 @@ class ContactData {
 
     getEmail() {
         return this.email;
+    }
+
+    getGroup() {
+        return this.group;
     }
 }
 

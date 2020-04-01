@@ -30,7 +30,8 @@ describe('Contact creation test', function () {
             firstName: 'test',
             lastName: 'test',
             homePhone: 'test',
-            email: 'test'
+            email: 'test',
+            group: 'test'
         });
         var contactsAfter = await createContact(driver, contact);
 

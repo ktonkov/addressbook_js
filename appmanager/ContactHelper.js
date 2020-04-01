@@ -1,6 +1,6 @@
-const { By } = require('selenium-webdriver');
+const { By, Select } = require('selenium-webdriver');
 
-const { click, type, isElementPresent, clickOnElement } = require('./HelperBase');
+const { click, type, isElementPresent, clickOnElement, isAlertPresent } = require('./HelperBase');
 
 const { ContactData } = require('../model/ContactData');
 
@@ -15,6 +15,10 @@ fillContactForm = async function (driver, contactData) {
     await type(driver, By.name("lastname"), contactData.getLastName());
     await type(driver, By.name("home"), contactData.getHomePhone());
     await type(driver, By.name("email"), contactData.getEmail());
+
+    if (isElementPresent(driver.findElement(By.name('new_group'))) && contactData.getGroup() != null) {
+        new Select(driver.findElement(By.name('new_group'))).selectByVisibleText(contactData.getGroup());
+    }
 }
 
 initContactCreationForm = async function (driver) {
@@ -44,7 +48,9 @@ deleteSelectedContact = async function (driver) {
 }
 
 acceptAlert = async function (driver) {
-    return driver.switchTo().alert().accept();
+    if (isAlertPresent(driver)) {
+        return driver.switchTo().alert().accept();
+    }
 }
 
 returnToHomePage = async function (driver) {
@@ -117,6 +123,8 @@ exports.createContactIfNoContacts = async function (driver, contact) {
         return await getContacts(driver);
     };
 }
+
+exports.getContacts = this.getContacts;
 
 exports.createContact = this.createContact;
 
