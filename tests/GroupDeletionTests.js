@@ -18,30 +18,30 @@ var _ = require('lodash');
 
 describe('Group deletion test', function () {
     const driver = new Builder().forBrowser('chrome').build();
+    var groupsBefore;
     before(async function () {
         await init(driver);
-    });
-    it('Delete and check group', async function () {
-        
-        var id = 0;
-
         await goToGroupPage(driver);
 
-        var groupsBefore = await createGroupIfNoGroups(driver, 
+        groupsBefore = await createGroupIfNoGroups(driver, 
             new GroupData({
                 name: 'test',
                 header: 'test',
                 footer: 'test'
             }
         ));
+    });
+    it('Delete and check group', async function () {
+        
+        var index = 0;
 
-        var groupsAfter = await deleteGroup(driver, id);
+        var groupsAfter = await deleteGroup(driver, index);
         expect(groupsBefore.length).to.equal(groupsAfter.length + 1);
-        groupsBefore.splice(id, 1);
+        groupsBefore.splice(index, 1);
         expect(diff(groupsBefore, groupsAfter, ['id', 'name'])).to.be.empty;
     });
     after(async function () {
-        driver.quit;
+        driver.quit();
     });
     
 });

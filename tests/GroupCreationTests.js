@@ -36,7 +36,7 @@ describe('Group creation test', function () {
         expect(diff(groupsBefore, groupsAfter, ['id', 'name'])).to.be.empty;
     });
     after(async function () {
-        driver.quit;
+        driver.quit();
     });
     
 });

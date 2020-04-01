@@ -41,7 +41,7 @@ describe('Contact creation test', function () {
         expect(diff(contactsBefore, contactsAfter, ['id', 'firstname', 'lastname'])).to.be.empty;
     });
     after(async function () {
-        driver.quit;
+        driver.quit();
     });
     
 });

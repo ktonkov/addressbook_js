@@ -18,17 +18,12 @@ var _ = require('lodash');
 
 describe('Contact modification test', function () {
     const driver = new Builder().forBrowser('chrome').build();
+    var contactsBefore;
     before(async function () {
         await init(driver);
-    });
-    
-    it('Modify and check contact', async function () {
-        
-        var id = 0;
-
         await goToHomePage(driver);
 
-        var contactsBefore = await createContactIfNoContacts(driver, 
+        contactsBefore = await createContactIfNoContacts(driver, 
             new ContactData({
                 firstName: 'test',
                 lastName: 'test',
@@ -37,7 +32,11 @@ describe('Contact modification test', function () {
                 group: 'test'
             }
         ));
-
+    });
+    
+    it('Modify and check contact', async function () {
+        
+        var index = 0;
         var contact = new ContactData({
             firstName: 'test',
             lastName: 'test',
@@ -45,18 +44,18 @@ describe('Contact modification test', function () {
             email: 'test'
         });
 
-        contact.setId(contactsBefore[id].getId());
-        var contactsAfter = await modifyContact(driver, id, contact);      
+        contact.setId(contactsBefore[index].getId());
+        var contactsAfter = await modifyContact(driver, index, contact);      
 
         expect(contactsBefore.length).to.equal(contactsAfter.length);
 
-        contactsBefore.splice(id, 1);
+        contactsBefore.splice(index, 1);
         contactsBefore.push(contact);
 
         expect(diff(contactsBefore, contactsAfter, ['id', 'firstname', 'lastname'])).to.be.empty;
     });
     after(async function () {
-        driver.quit;
+        driver.quit();
     });
     
 });

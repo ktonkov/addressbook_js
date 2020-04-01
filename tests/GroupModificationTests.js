@@ -18,40 +18,40 @@ var _ = require('lodash');
 
 describe('Group modification test', function () {
     const driver = new Builder().forBrowser('chrome').build();
+    var groupsBefore;
     before(async function () {
         await init(driver);
-    });
-    it('Modify and check group', async function () {
-        
-        var id = 0;
-
         await goToGroupPage(driver);
 
-        var groupsBefore = await createGroupIfNoGroups(driver, 
+        groupsBefore = await createGroupIfNoGroups(driver, 
             new GroupData({
                 name: 'test',
                 header: 'test',
                 footer: 'test'
             }
         ));
+    });
+    it('Modify and check group', async function () {
+        
+        var index = 0;
 
         var group = new GroupData({
             name: 'test',
             header: 'test',
             footer: 'test'
         });
-        group.setId(groupsBefore[id].getId());
-        var groupsAfter = await modifyGroup(driver, id, group);
+        group.setId(groupsBefore[index].getId());
+        var groupsAfter = await modifyGroup(driver, index, group);
         expect(groupsBefore.length).to.equal(groupsAfter.length);
 
-        groupsBefore.splice(id, 1);
+        groupsBefore.splice(index, 1);
 
         groupsBefore.push(group);
 
         expect(diff(groupsBefore, groupsAfter, ['id', 'name'])).to.be.empty;
     });
     after(async function () {
-        driver.quit;
+        driver.quit();
     });
     
 });
