@@ -35,20 +35,13 @@ describe('Contact modification test', function () {
     
     it('Modify and check contact', async function () {
         
-        var indexd = 0;
+        var index = 0;
 
-        var contact = new ContactData({
-            firstName: 'test',
-            lastName: 'test',
-            homePhone: 'test',
-            email: 'test'
-        });
-
-        var contactsAfter = await deleteContact(driver, indexd);
+        var contactsAfter = await deleteContact(driver, index);
 
         expect(contactsBefore.length).to.equal(contactsAfter.length + 1);
 
-        contactsBefore.splice(indexd, 1);
+        contactsBefore.splice(index, 1);
 
         expect(diff(contactsBefore, contactsAfter, ['id', 'firstname', 'lastname'])).to.be.empty;
     });
