@@ -25,7 +25,7 @@ exports.clickOnElement = async function (element) {
 
 exports.isAlertPresent = async function () {
     try {
-        driver.switchTo().alert();
+        await driver.switchTo().alert();
         return true;
     } catch (err) {
         return false;

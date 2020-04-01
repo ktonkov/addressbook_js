@@ -4,7 +4,7 @@ const { expect } = require('chai');
 
 const { asyncForEach } = require('../appmanager/HelperBase');
 
-const { getContacts, createContact, initGroupCreation } = require('../appmanager/ContactHelper');
+const { getContacts, createContact } = require('../appmanager/ContactHelper');
 
 const { ContactData, isEqual } = require('../model/ContactData');
 

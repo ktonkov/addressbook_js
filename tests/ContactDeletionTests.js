@@ -33,7 +33,8 @@ describe('Contact modification test', function () {
                 firstName: 'test',
                 lastName: 'test',
                 homePhone: 'test',
-                email: 'test'
+                email: 'test',
+                group: 'test'
             }
         ));
 

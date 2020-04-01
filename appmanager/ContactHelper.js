@@ -15,10 +15,6 @@ fillContactForm = async function (driver, contactData) {
     await type(driver, By.name("lastname"), contactData.getLastName());
     await type(driver, By.name("home"), contactData.getHomePhone());
     await type(driver, By.name("email"), contactData.getEmail());
-
-    if (isElementPresent(driver.findElement(By.name('new_group'))) && contactData.getGroup() != null) {
-        new Select(driver.findElement(By.name('new_group'))).selectByVisibleText(contactData.getGroup());
-    }
 }
 
 initContactCreationForm = async function (driver) {
@@ -49,7 +45,7 @@ deleteSelectedContact = async function (driver) {
 
 acceptAlert = async function (driver) {
     if (isAlertPresent(driver)) {
-        return driver.switchTo().alert().accept();
+        return await driver.switchTo().alert().accept();
     }
 }
 
@@ -86,10 +82,10 @@ async function getMaxId(contacts) {
 };
 
 isThereAContact = async function (driver) {
-    return isElementPresent(driver, By.name("entry"));
+    return await isElementPresent(driver, By.name("entry"));
 }
 
-exports.createContact = async function (driver, contact) {
+createContact = async function (driver, contact) {
     await initContactCreationForm(driver);
     await fillContactForm(driver, contact);
     await submitContactForm(driver);
@@ -124,9 +120,9 @@ exports.createContactIfNoContacts = async function (driver, contact) {
     };
 }
 
-exports.getContacts = this.getContacts;
+exports.getContacts = getContacts;
 
-exports.createContact = this.createContact;
+exports.createContact = createContact;
 
 exports.getContactCount = async function (driver) {
     return getContacts(driver).size();
