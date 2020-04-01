@@ -37,7 +37,7 @@ describe('Contact creation test', function () {
 
         expect(contactsBefore.length).to.equal(contactsAfter.length - 1);
         contactsBefore.push(contact);
-        
+
         expect(diff(contactsBefore, contactsAfter, ['id', 'firstname', 'lastname'])).to.be.empty;
     });
     after(async function () {

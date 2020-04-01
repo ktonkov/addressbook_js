@@ -6,6 +6,8 @@ const { ContactData } = require('../model/ContactData');
 
 const { goToHomePage } = require('./NavigationHelper');
 
+const { init, diff, getMaxId } = require('../tests/TestBase');
+
 submitContactForm = async function (driver) {
     return click(driver, By.xpath("(//input[@name='submit'])[2]"));
 }
@@ -72,14 +74,6 @@ getContacts = async function (driver) {
     }
     return contacts;
 }
-
-async function getMaxId(contacts) {
-    var max = 0;
-    for (const contact of contacts) {
-        max = contact.getId();
-    }
-    return max;
-};
 
 isThereAContact = async function (driver) {
     return await isElementPresent(driver, By.name("entry"));

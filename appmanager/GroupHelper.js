@@ -4,6 +4,8 @@ const { click, type, isElementPresent, clickOnElement } = require('./HelperBase'
 
 const { GroupData } = require('../model/GroupData');
 
+const { init, diff, getMaxId } = require('../tests/TestBase');
+
 
 submitGroupCreation = async function (driver) {
     return click(driver, By.name("submit"));
@@ -41,16 +43,6 @@ submitGroupModification = async function (driver) {
     return click(driver, By.name("update"));
 }
 
-async function getMaxId(groups) {
-    var max = 0;
-    for (const group of groups) {
-        if (group.getId() > max) {
-            max = group.getId();
-        }
-    }
-    return max;
-};
-
 getGroups = async function (driver) {
     var groups = [];
     var elements = await driver.findElements(By.css("span.group"));
@@ -79,7 +71,7 @@ createGroup = async function (driver, group) {
     await submitGroupCreation(driver);
     await returnToGroupPage(driver);
     var groups = await getGroups(driver);
-    await group.setId(getMaxId(groups));
+    await group.setId(await getMaxId(groups));
     return groups;
 }
 
