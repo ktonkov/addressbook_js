@@ -85,7 +85,7 @@ createContact = async function (driver, contact) {
     await submitContactForm(driver);
     await returnToHomePage(driver);
     var contacts = await getContacts(driver);
-    await contact.setId(getMaxId(contacts));
+    await contact.setId(await getMaxId(contacts));
     return contacts;
 }
 
