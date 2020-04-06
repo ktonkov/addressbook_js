@@ -12,15 +12,17 @@ const { login } = require('../appmanager/SessionHelper');
 
 const { gotoHomePage, goToGroupPage } = require('../appmanager/NavigationHelper');
 
-const { init, diff } = require('./TestBase');
+const { init, diff, getDriver } = require('./TestBase');
 
 var _ = require('lodash');
 
+let driver;
+
 describe('Group deletion test', function () {
-    const driver = new Builder().forBrowser('chrome').build();
     var groupsBefore;
     before(async function () {
-        await init(driver);
+        driver = await getDriver();
+        //await init(driver);
         await goToGroupPage(driver);
 
         groupsBefore = await createGroupIfNoGroups(driver, 
@@ -40,8 +42,9 @@ describe('Group deletion test', function () {
         groupsBefore.splice(index, 1);
         expect(diff(groupsBefore, groupsAfter, ['id', 'name'])).to.be.empty;
     });
+    /*
     after(async function () {
         driver.quit();
     });
-    
+    */
 });

@@ -12,15 +12,17 @@ const { login } = require('../appmanager/SessionHelper');
 
 const { goToHomePage, goToGroupPage } = require('../appmanager/NavigationHelper');
 
-const { init, diff } = require('./TestBase');
+const { init, diff, getDriver } = require('./TestBase');
 
 var _ = require('lodash');
 
+let driver;
+
 describe('Contact modification test', function () {
-    const driver = new Builder().forBrowser('chrome').build();
     var contactsBefore;
     before(async function () {
-        await init(driver);
+        driver = await getDriver();
+        //await init(driver);
         await goToHomePage(driver);
         contactsBefore = await createContactIfNoContacts(driver, 
             new ContactData({
@@ -45,8 +47,9 @@ describe('Contact modification test', function () {
 
         expect(diff(contactsBefore, contactsAfter, ['id', 'firstname', 'lastname'])).to.be.empty;
     });
+    /*
     after(async function () {
         driver.quit();
     });
-    
+    */
 });

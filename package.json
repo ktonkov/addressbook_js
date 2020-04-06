@@ -10,7 +10,8 @@
     "test:contactcreation": "node_modules/.bin/mocha tests/ContactCreationTests.js --timeout 50000",
     "test:contactmodification": "node_modules/.bin/mocha tests/ContactModificationTests.js --timeout 50000",
     "test:contactdeletion": "node_modules/.bin/mocha tests/ContactDeletionTests.js --timeout 50000",
-    "test:lodashtest": "node_modules/.bin/mocha tests/lodashTests.js --timeout 50000"
+    "test:lodashtest": "node_modules/.bin/mocha tests/lodashTests.js --timeout 50000",
+    "runner": "node tests/runner.js"
   },
   "author": "ktonkov",
   "license": "MIT",
