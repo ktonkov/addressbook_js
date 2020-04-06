@@ -1,18 +1,12 @@
-const { Builder, By, until } = require('selenium-webdriver');
-const { assert } = require('assert');
 const { expect } = require('chai');
-
-const { asyncForEach } = require('../appmanager/HelperBase');
 
 const { getContacts, createContact } = require('../appmanager/ContactHelper');
 
-const { ContactData, isEqual } = require('../model/ContactData');
+const { ContactData } = require('../model/ContactData');
 
-const { login } = require('../appmanager/SessionHelper');
+const { goToHomePage } = require('../appmanager/NavigationHelper');
 
-const { goToHomePage, goToGroupPage } = require('../appmanager/NavigationHelper');
-
-const { init, diff, getDriver } = require('./TestBase');
+const { diff, getDriver } = require('./TestBase');
 
 var _ = require('lodash');
 
@@ -22,7 +16,6 @@ describe('Contact creation test', function () {
     
     before(async function () {
         driver = await getDriver();
-        //await init(driver);
     });
     
     it('Create and check contact', async function () {
@@ -43,9 +36,4 @@ describe('Contact creation test', function () {
 
         expect(diff(contactsBefore, contactsAfter, ['id', 'firstname', 'lastname'])).to.be.empty;
     });
-    /*
-    after(async function () {
-        driver.quit();
-    });
-    */
 });

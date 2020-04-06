@@ -4,8 +4,6 @@ const { asyncForEach, init } = require('./TestBase');
 const Mocha = require('mocha');
 
 let fail = false;
-let gateway = '';
-let gatewayTests = '';
 
 const run = async () => {
     await asyncForEach(browsers, async browser => {

@@ -1,6 +1,6 @@
 const { By } = require('selenium-webdriver');
 
-const { click, type, isElementPresent } = require('./HelperBase');
+const { click, isElementPresent } = require('./HelperBase');
 
 exports.goToGroupPage = async function (driver) {
     var isOnGroupPage = await isElementPresent(driver, By.tagName('h1')) 

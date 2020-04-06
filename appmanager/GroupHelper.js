@@ -4,7 +4,7 @@ const { click, type, isElementPresent, clickOnElement } = require('./HelperBase'
 
 const { GroupData } = require('../model/GroupData');
 
-const { init, diff, getMaxId } = require('../tests/TestBase');
+const { getMaxId } = require('../tests/TestBase');
 
 
 submitGroupCreation = async function (driver) {

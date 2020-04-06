@@ -1,18 +1,12 @@
-const { Builder, By, until } = require('selenium-webdriver');
-const { assert } = require('assert');
 const { expect } = require('chai');
 
-const { asyncForEach } = require('../appmanager/HelperBase');
+const { createGroupIfNoGroups, deleteGroup } = require('../appmanager/GroupHelper');
 
-const { createGroupIfNoGroups, createGroup, isThereAGroup, deleteGroup, modifyGroup } = require('../appmanager/GroupHelper');
+const { GroupData } = require('../model/GroupData');
 
-const { GroupData, isEqual } = require('../model/GroupData');
+const { goToGroupPage } = require('../appmanager/NavigationHelper');
 
-const { login } = require('../appmanager/SessionHelper');
-
-const { gotoHomePage, goToGroupPage } = require('../appmanager/NavigationHelper');
-
-const { init, diff, getDriver } = require('./TestBase');
+const { diff, getDriver } = require('./TestBase');
 
 var _ = require('lodash');
 
@@ -22,7 +16,6 @@ describe('Group deletion test', function () {
     var groupsBefore;
     before(async function () {
         driver = await getDriver();
-        //await init(driver);
         await goToGroupPage(driver);
 
         groupsBefore = await createGroupIfNoGroups(driver, 
@@ -42,9 +35,4 @@ describe('Group deletion test', function () {
         groupsBefore.splice(index, 1);
         expect(diff(groupsBefore, groupsAfter, ['id', 'name'])).to.be.empty;
     });
-    /*
-    after(async function () {
-        driver.quit();
-    });
-    */
 });
