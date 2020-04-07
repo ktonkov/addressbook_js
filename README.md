@@ -6,10 +6,4 @@ Requirements:
 * node.js
 
 Launching:
-npm run test:groupcreation
-        test:groupmodification
-        test:groupdeletion
-    	test:contactcreation
-    	test:contactmodification
-   	test:contactdeletion
-    	test:lodashtest
+npm run runner
