@@ -1,0 +1,42 @@
+{
+    "url": "http://localhost/addressbook",
+
+    "user": {
+      "login": "admin",
+      "password": "secret"
+      },
+
+      "browsers": {
+          "chrome": {
+              "name": "chrome",
+              "version": 80.0
+          }
+      },
+      
+      "tests": {
+        "ContactCreationTests": {
+            "file": "ContactCreationTests",
+            "timeout": 120000
+        },
+        "ContactDeletionTests": {
+            "file": "ContactDeletionTests",
+            "timeout": 120000
+        },
+        "ContactModificationTests": {
+            "file": "ContactModificationTests",
+            "timeout": 120000
+        },
+        "GroupCreationTests": {
+            "file": "GroupCreationTests",
+            "timeout": 120000
+        },
+        "GroupDeletionTests": {
+            "file": "GroupDeletionTests",
+            "timeout": 120000
+        },
+        "GroupModificationTests": {
+            "file": "GroupModificationTests",
+            "timeout": 120000
+        }
+    }
+}

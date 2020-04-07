@@ -1,15 +1,16 @@
 const { Builder } = require('selenium-webdriver');
-const { browsers, tests } = require('./config');
+//const { browsers, tests } = require('./config');
 const { asyncForEach, init } = require('./TestBase');
 const Mocha = require('mocha');
-
+var argv = require('minimist')(process.argv.slice(2));
 let fail = false;
+const config = require('config');
 
 const run = async () => {
-    await asyncForEach(browsers, async browser => {
-        global.driver = await new Builder().forBrowser(browser.browserName).build();
+    await asyncForEach(config.get('browsers'), async browser => {
+        global.driver = await new Builder().forBrowser(browser.name).build();
         await init(driver);
-        await asyncForEach(tests, async testCase => {
+        await asyncForEach(config.get('tests'), async testCase => {
             // Driver used by the Selenium tests.
             /*
             global.driver = await new Builder()
@@ -31,7 +32,7 @@ const run = async () => {
                     delete require.cache[file];
                 });
 
-                console.log(`Running ${testCase.file} against ${browser.browserName} (v${browser.browser_version})`);
+                console.log(`Running ${testCase.file} against ${browser.name} (v${browser.version})`);
 
                 mocha.addFile(`./tests/${testCase.file}.js`);
 
